@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [ArticleController::class, 'index'])->name('article.list');
+Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

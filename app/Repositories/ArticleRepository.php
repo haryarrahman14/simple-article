@@ -22,6 +22,11 @@ class ArticleRepository implements ArticleRepositoryInterface
         return Article::find($id);
     }
 
+    public function where($column, $value)
+    {
+        return Article::where($column, $value);
+    }
+
     public function create(array $data)
     {
         return Article::create($data);

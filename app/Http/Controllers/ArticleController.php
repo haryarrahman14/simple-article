@@ -29,4 +29,12 @@ class ArticleController extends Controller
             'articleRecommendation' => fn() => $this->articleService->allRecommendation(),  
         ]);
     }
+
+    public function show($slug)
+    {
+        return Inertia::render('News/Detail', [
+            'categories' => fn() => $this->categoryService->all(),
+            'article' => fn() => $this->articleService->findBySlug($slug),
+        ]);
+    }
 }

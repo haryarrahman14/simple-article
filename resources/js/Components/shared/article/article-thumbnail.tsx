@@ -33,10 +33,6 @@ export function ArticleThumbnail({
   className,
   ...props
 }: ArticleThumbnailProps) {
-  const data: any = {};
-
-  const collections: any = data?.data?.data || [];
-
   return (
     <div className={cn("space-y-3", className)} {...props}>
       <ContextMenu>
@@ -67,7 +63,7 @@ export function ArticleThumbnail({
                 New Collection
               </ContextMenuItem>
               <ContextMenuSeparator />
-              {collections.map((collection: any) => (
+              {collections.map((collection: string) => (
                 <ContextMenuItem key={collection}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

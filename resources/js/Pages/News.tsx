@@ -15,7 +15,6 @@ function News({
     articles: Article[];
     articleRecommendation: Article[];
 }) {
-    console.log({ categories })
     return (
         <ArticleLayout title="News" categories={categories}>
             <div className="h-full px-4 py-6 lg:px-8">

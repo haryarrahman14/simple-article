@@ -51,6 +51,19 @@ class ArticleService
         return $this->articleRepository->find($id);
     }
 
+    // find by attribute slug
+    public function findBySlug($slug)
+    {
+        $data = $this->articleRepository->where('slug', $slug)->first();
+
+        if (!$data) {
+            return false;
+        }
+        $data['thumbnail'] = asset('storage/' . $data['thumbnail']);
+
+        return $data;
+    }
+
     public function create(array $data)
     {
         $category = $this->categoryRepository->find($data['category_id']);
