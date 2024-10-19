@@ -1,11 +1,11 @@
-import Guest from '@/Layouts/GuestLayout';
+import ArticleLayout from '@/Layouts/ArticleLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Welcome() {
     return (
-        <Guest>
+        <ArticleLayout>
             <Head title="Portal News" />
             <p>YOOO WASSUP THIS IS PORTAL</p>
-        </Guest>
+        </ArticleLayout>
     );
 }
