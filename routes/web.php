@@ -5,12 +5,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/', function () {
-//     return Inertia::render('News', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register')
-//     ]);
-// });
 Route::get('/', [ArticleController::class, 'index'])->name('article.list');
 
 Route::get('/dashboard', function () {
