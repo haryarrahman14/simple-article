@@ -12,6 +12,11 @@ class ArticleRepository implements ArticleRepositoryInterface
         return Article::all();
     }
 
+    public function allRecommendation() {
+        // get random 5 articles
+        return Article::inRandomOrder()->limit(5)->get();
+    }
+
     public function find($id)
     {
         return Article::find($id);

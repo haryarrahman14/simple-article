@@ -21,7 +21,8 @@ class ArticleController extends Controller
         return Inertia::render('News', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'news' => fn() => $this->articleService->all(),
+            'articles' => fn() => $this->articleService->all(),
+            'articleRecommendation' => fn() => $this->articleService->allRecommendation(),  
         ]);
     }
 }

@@ -23,6 +23,22 @@ class ArticleService
         // map category id to category { id, name } and remove category_id
         $data = $data->map(function ($item) {
             $item['category'] = $this->categoryService->find($item['category_id']);
+            $item['thumbnail'] = asset('storage/' . $item['thumbnail']);
+            unset($item['category_id']);
+            return $item;
+        });
+
+        return $data;
+    }
+
+    public function allRecommendation() 
+    {
+        $data = $this->articleRepository->allRecommendation();
+
+        // map category id to category { id, name } and remove category_id
+        $data = $data->map(function ($item) {
+            $item['category'] = $this->categoryService->find($item['category_id']);
+            $item['thumbnail'] = asset('storage/' . $item['thumbnail']);
             unset($item['category_id']);
             return $item;
         });

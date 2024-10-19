@@ -1,11 +1,13 @@
 import { Menu } from '@/Components/shared/menu';
 import { Sidebar } from '@/Components/shared/sidebar';
 import { ScrollArea } from '@/Components/ui/scroll-area';
+import { Head } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
-export default function ArticleLayout({ children }: PropsWithChildren) {
+export default function ArticleLayout({ children, title }: PropsWithChildren<{ title: string }>) {
     return (
         <>
+            <Head title={title} />
             <Menu />
             <div className="border-t">
                 <div className="bg-background">

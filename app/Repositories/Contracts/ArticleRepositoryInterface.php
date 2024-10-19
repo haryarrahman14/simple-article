@@ -5,6 +5,7 @@ namespace App\Repositories\Contracts;
 interface ArticleRepositoryInterface
 {
     public function all();
+    public function allRecommendation();
     public function find($id);
     public function create(array $data);
     public function update($id, array $data);

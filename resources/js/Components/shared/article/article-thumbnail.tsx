@@ -14,14 +14,9 @@ import {
 import { Skeleton } from "../../ui/skeleton";
 import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
+import { Article } from "@/models/article";
+import dayjs from 'dayjs'
 
-interface Article {
-  id?: string;
-  title: string;
-  author: string;
-  image: string;
-  link?: string;
-}
 
 interface ArticleThumbnailProps extends React.HTMLAttributes<HTMLDivElement> {
   article: Article;
@@ -47,10 +42,10 @@ export function ArticleThumbnail({
       <ContextMenu>
         <ContextMenuTrigger>
           <div className="overflow-hidden rounded-md">
-            <Link href={`/article/${article?.id}`}>
+            <Link href={`/article/${article.slug}`}>
               <img
-                src={article.image}
-                alt={article.title}
+                src={article.thumbnail}
+                alt={article.name}
                 width={width}
                 height={height}
                 className={cn(
@@ -101,8 +96,8 @@ export function ArticleThumbnail({
         </ContextMenuContent>
       </ContextMenu>
       <div className="space-y-1 text-sm">
-        <h3 className="font-medium leading-none">{article.title}</h3>
-        <p className="text-xs text-muted-foreground">{article.author}</p>
+        <h3 className="font-medium leading-none">{article.name}</h3>
+        <p className="text-xs text-muted-foreground">{article.created_at ? dayjs(article.created_at).format('DD MMM YYYY') : '-'}</p>
       </div>
     </div>
   );
