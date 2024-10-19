@@ -39,6 +39,9 @@
         "clsx": "^2.1.1",
         "dayjs": "^1.11.13",
         "lucide-react": "^0.453.0",
+        "react-markdown": "8.0.6",
+        "rehype-raw": "7.0.0",
+        "remark-gfm": "^4.0.0",
         "tailwind-merge": "^2.5.4",
         "tailwindcss-animate": "^1.0.7"
     }

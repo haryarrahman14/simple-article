@@ -60,6 +60,7 @@ class ArticleService
             return false;
         }
         $data['thumbnail'] = asset('storage/' . $data['thumbnail']);
+        $data['content'] = str($data['content'])->markdown()->sanitizeHtml();
 
         return $data;
     }

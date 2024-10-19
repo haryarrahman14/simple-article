@@ -3,6 +3,9 @@ import { Article } from "@/models/article";
 import { Category } from "@/models/category";
 import dayjs from 'dayjs'
 
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw';
+
 
 export default function Detail({
     article,
@@ -11,7 +14,6 @@ export default function Detail({
     article: Article
     categories: Category[]
 }) {
-    console.log({ article })
     return (
         <ArticleLayout title={article?.name} categories={categories}>
             <div className="p-6">
@@ -25,10 +27,9 @@ export default function Detail({
                         className="w-full h-auto"
                     />
                 </div>
-                <div className="mb-6">
+                <ReactMarkdown className="markdown" rehypePlugins={[rehypeRaw]}>
                     {article?.content}
-                </div>
-
+                </ReactMarkdown>
                 <div className="mb-6">
                     <h2 className="text-xl font-semibold mb-2">Created At</h2>
                     <p >{article?.created_at ? dayjs(article?.created_at).format('DD MMM YYYY') : '-'}</p>

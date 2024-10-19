@@ -5,8 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -31,7 +31,7 @@ class ArticleResource extends Resource
 
                 FileUpload::make('thumbnail')->image()->required(),
 
-                Textarea::make('content')->required(),
+                MarkdownEditor::make('content')->required(),
 
                 Select::make('category_id')->relationship(name: 'category', titleAttribute: 'name')->required()
             ]);
