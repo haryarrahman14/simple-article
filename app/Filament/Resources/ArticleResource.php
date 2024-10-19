@@ -3,15 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArticleResource\Pages;
-use App\Filament\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
-use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ArticleResource extends Resource
 {
@@ -24,6 +27,13 @@ class ArticleResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')->required()->maxLength(255),
+
+                FileUpload::make('thumbnail')->image()->required(),
+
+                Textarea::make('content')->required(),
+
+                Select::make('category_id')->relationship(name: 'category', titleAttribute: 'name')->required()
             ]);
     }
 
@@ -32,11 +42,17 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 //
+                ImageColumn::make('thumbnail'),
+
+                TextColumn::make('name')->searchable(),
+
+                TextColumn::make('category.name')->label('Category'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
