@@ -1,5 +1,5 @@
 
-import { TabsContent } from "@/components/ui/tabs";
+import { TabsContent } from "@/Components/ui/tabs";
 import { DashboardLatestArticle } from "./latest-article";
 import { DashboardRecommendedArticle } from "./recommended-article";
 import { Article } from "@/models/article";

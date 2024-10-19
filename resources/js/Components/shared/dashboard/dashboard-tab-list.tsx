@@ -1,5 +1,5 @@
-import { TooltipContentDisabled } from "@/components/shared/tooltip-content-disabled";
-import { TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { TabsList, TabsTrigger } from "@/Components/ui/tabs";
 
 export function DashboardTabList() {
   return (

@@ -1,4 +1,4 @@
-import { ArticleEmptyPlaceholder } from "@/components/shared/article/article-empty-placeholder";
+import { ArticleEmptyPlaceholder } from "../../../shared/article/article-empty-placeholder";
 import { Separator } from "@radix-ui/react-menubar";
 import { TabsContent } from "@radix-ui/react-tabs";
 

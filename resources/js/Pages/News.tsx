@@ -2,7 +2,7 @@ import { DashboardTabList } from '@/Components/shared/dashboard/dashboard-tab-li
 import { DashboardTabsArticle } from '@/Components/shared/dashboard/dashboard-tabs-article';
 import { DashboardTabsFavorite } from '@/Components/shared/dashboard/dashboard-tabs-favorite';
 import ArticleLayout from '@/Layouts/ArticleLayout';
-import { Tabs } from '@/components/ui/tabs';
+import { Tabs } from '@/Components/ui/tabs';
 import { Article } from '@/models/article';
 import { Category } from '@/models/category';
 

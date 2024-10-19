@@ -27,7 +27,7 @@ export default function Detail({
                         className="w-full h-auto"
                     />
                 </div>
-                <ReactMarkdown className="markdown" rehypePlugins={[rehypeRaw]}>
+                <ReactMarkdown className="markdown" rehypePlugins={[rehypeRaw as any]}>
                     {article?.content}
                 </ReactMarkdown>
                 <div className="mb-6">
