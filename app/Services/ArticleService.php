@@ -8,12 +8,12 @@ use App\Repositories\CategoryRepository;
 class ArticleService 
 {
     protected $articleRepository;
-    protected $categoryService;
+    protected $categoryRepository;
 
-    public function __construct(ArticleRepository $articleRepository, CategoryRepository $categoryService)
+    public function __construct(ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
     {
         $this->articleRepository = $articleRepository;
-        $this->categoryService = $categoryService;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function all()
@@ -22,7 +22,7 @@ class ArticleService
 
         // map category id to category { id, name } and remove category_id
         $data = $data->map(function ($item) {
-            $item['category'] = $this->categoryService->find($item['category_id']);
+            $item['category'] = $this->categoryRepository->find($item['category_id']);
             $item['thumbnail'] = asset('storage/' . $item['thumbnail']);
             unset($item['category_id']);
             return $item;
@@ -37,7 +37,7 @@ class ArticleService
 
         // map category id to category { id, name } and remove category_id
         $data = $data->map(function ($item) {
-            $item['category'] = $this->categoryService->find($item['category_id']);
+            $item['category'] = $this->categoryRepository->find($item['category_id']);
             $item['thumbnail'] = asset('storage/' . $item['thumbnail']);
             unset($item['category_id']);
             return $item;
@@ -53,7 +53,7 @@ class ArticleService
 
     public function create(array $data)
     {
-        $category = $this->categoryService->find($data['category_id']);
+        $category = $this->categoryRepository->find($data['category_id']);
         if (!$category) {
             return false;
         }
@@ -63,7 +63,7 @@ class ArticleService
 
     public function update($id, array $data)
     {
-        $category = $this->categoryService->find($data['category_id']);
+        $category = $this->categoryRepository->find($data['category_id']);
         if (!$category) {
             return false;
         }

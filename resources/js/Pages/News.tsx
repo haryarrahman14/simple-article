@@ -4,25 +4,29 @@ import { DashboardTabsFavorite } from '@/Components/shared/dashboard/dashboard-t
 import ArticleLayout from '@/Layouts/ArticleLayout';
 import { Tabs } from '@/components/ui/tabs';
 import { Article } from '@/models/article';
+import { Category } from '@/models/category';
 
 function News({
+    categories,
     articles,
     articleRecommendation
 }: {
+    categories: Category[];
     articles: Article[];
     articleRecommendation: Article[];
 }) {
+    console.log({ categories })
     return (
-        <div className="h-full px-4 py-6 lg:px-8">
-            <Tabs defaultValue="articles" className="h-full space-y-6">
-                <DashboardTabList />
-                <DashboardTabsArticle articles={articles} articleRecommendation={articleRecommendation} />
-                <DashboardTabsFavorite />
-            </Tabs>
-        </div>
+        <ArticleLayout title="News" categories={categories}>
+            <div className="h-full px-4 py-6 lg:px-8">
+                <Tabs defaultValue="articles" className="h-full space-y-6">
+                    <DashboardTabList />
+                    <DashboardTabsArticle articles={articles} articleRecommendation={articleRecommendation} />
+                    <DashboardTabsFavorite />
+                </Tabs>
+            </div>
+        </ArticleLayout>
     );
 }
-
-News.layout = (page: React.ReactNode) => <ArticleLayout children={page} title="News" />
 
 export default News;

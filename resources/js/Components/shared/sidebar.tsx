@@ -6,15 +6,13 @@ import { Skeleton } from "../ui/skeleton";
 import { TooltipContentDisabled } from "./tooltip-content-disabled";
 import { Link } from "@inertiajs/react";
 import { cn } from "@/lib/utils";
+import { Category } from "@/models/category";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  categories: Category[];
+}
 
-export function Sidebar({ className }: SidebarProps) {
-  const data: any = {}
-  const isLoading: any = false
-
-  const categories = data?.data?.data || [];
-
+export function Sidebar({ categories, className }: SidebarProps) {
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
@@ -88,17 +86,8 @@ export function Sidebar({ className }: SidebarProps) {
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Popular Tags
           </h2>
-          {isLoading && (
-            <div className="space-y-1">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="w-full px-[16px] py-[4px]">
-                  <Skeleton className="w-full h-[20px] rounded-[4px]" />
-                </div>
-              ))}
-            </div>
-          )}
 
-          {!isLoading && (
+          {
             <div className="space-y-1">
               <TooltipContentDisabled>
                 <Button variant="ghost" className="w-full justify-start">
@@ -200,7 +189,7 @@ export function Sidebar({ className }: SidebarProps) {
                 </Button>
               </TooltipContentDisabled>
             </div>
-          )}
+          }
         </div>
         <div className="py-2">
           <h2 className="relative px-7 text-lg font-semibold tracking-tight">
@@ -208,35 +197,20 @@ export function Sidebar({ className }: SidebarProps) {
           </h2>
           <ScrollArea className="h-[300px] px-1">
             <div className="space-y-1 p-2">
-              {isLoading &&
-                Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="w-full px-[16px] py-[4px]">
-                    <Skeleton className="w-full h-[20px] rounded-[4px]" />
-                  </div>
-                ))}
-              {categories?.map((category: any, i: number) => (
+              {categories?.map((category: Category, i: number) => (
                 <TooltipContentDisabled key={`${category}-${i}`}>
                   <Button
                     variant="ghost"
-                    className="w-full justify-start font-normal"
+                    className="w-full justify-start font-normal "
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="mr-2 h-4 w-4"
-                    >
-                      <path d="M21 15V6" />
-                      <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                      <path d="M12 12H3" />
-                      <path d="M16 6H3" />
-                      <path d="M12 18H3" />
-                    </svg>
-                    {category}
+                    <img
+                      src={category.icon}
+                      alt={category.name}
+                      width={16}
+                      height={16}
+                      className="mr-2"
+                    />
+                    {category.name}
                   </Button>
                 </TooltipContentDisabled>
               ))}
