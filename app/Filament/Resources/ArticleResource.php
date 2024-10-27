@@ -52,7 +52,6 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('thumbnail'),
 
                 TextColumn::make('name')->searchable(),
 
