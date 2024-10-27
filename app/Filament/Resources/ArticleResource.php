@@ -26,14 +26,25 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-                //
                 TextInput::make('name')->required()->maxLength(255),
 
                 FileUpload::make('thumbnail')->image()->required(),
 
                 MarkdownEditor::make('content')->required(),
 
-                Select::make('category_id')->relationship(name: 'category', titleAttribute: 'name')->required()
+                Select::make('category_id')
+                    ->relationship(name: 'category', titleAttribute: 'name')
+                    ->required(),
+
+                Select::make('author_id')
+                    ->relationship(name: 'author', titleAttribute: 'name')
+                    ->required()
+                    ->label('Author'),
+
+                Select::make('level_id')
+                    ->relationship(name: 'level', titleAttribute: 'name')
+                    ->required()
+                    ->label('Level'),
             ]);
     }
 
@@ -41,12 +52,15 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                //
                 ImageColumn::make('thumbnail'),
 
                 TextColumn::make('name')->searchable(),
 
                 TextColumn::make('category.name')->label('Category'),
+
+                TextColumn::make('author.name')->label('Author')->sortable(),
+
+                TextColumn::make('level.name')->label('Level')->sortable(),
             ])
             ->filters([
                 //
