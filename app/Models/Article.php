@@ -18,8 +18,8 @@ class Article extends Model
         'thumbnail',
         'content',
         'category_id',
-        'author',
-        'level'
+        'author_id',
+        'level_id'
     ];
 
     public function setNameAttribute($value)
@@ -31,5 +31,15 @@ class Article extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class, 'author_id');
+    }
+
+    public function level(): BelongsTo
+    {
+        return $this->belongsTo(Level::class, 'level_id');
     }
 }

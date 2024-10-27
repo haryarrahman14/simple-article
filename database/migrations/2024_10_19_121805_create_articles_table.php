@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('thumbnail');
             $table->text('content');
-            $table->string('author'); // Penambahan kolom author
-            $table->enum('level', ['beginner', 'intermediate', 'advanced']); // Penambahan kolom level
+            $table->string('author_id')->constrained()->cascadeOnDelete();
+            $table->string('level_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
