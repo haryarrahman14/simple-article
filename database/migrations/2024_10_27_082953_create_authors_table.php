@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('thumbnail');
-            $table->text('content');
-            $table->string('author'); // Penambahan kolom author
-            $table->enum('level', ['beginner', 'intermediate', 'advanced']); // Penambahan kolom level
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->text('bio')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('authors');
     }
 };

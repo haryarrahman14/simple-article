@@ -17,7 +17,9 @@ class Article extends Model
         'slug',
         'thumbnail',
         'content',
-        'category_id'
+        'category_id',
+        'author',
+        'level'
     ];
 
     public function setNameAttribute($value)
